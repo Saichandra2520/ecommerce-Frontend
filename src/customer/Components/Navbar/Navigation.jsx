@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deepPurple } from "@mui/material/colors";
 import { getUser, logout } from "../../../Redux/Auth/Action";
 import { getCart } from "../../../Redux/Customers/Cart/Action";
+import icon from "./icon.png";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -24,12 +25,12 @@ export default function Navigation() {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { auth,cart } = useSelector((store) => store);
+  const { auth, cart } = useSelector((store) => store);
   const [openAuthModal, setOpenAuthModal] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const openUserMenu = Boolean(anchorEl);
   const jwt = localStorage.getItem("jwt");
-  const location=useLocation();
+  const location = useLocation();
 
   useEffect(() => {
     if (jwt) {
@@ -37,7 +38,7 @@ export default function Navigation() {
       dispatch(getCart(jwt));
     }
   }, [jwt]);
-  
+
   const handleUserClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -50,20 +51,25 @@ export default function Navigation() {
   };
   const handleClose = () => {
     setOpenAuthModal(false);
-   
   };
 
   const handleCategoryClick = (category, section, item, close) => {
     navigate(`/${category.id}/${section.id}/${item.id}`);
-    close();
+    if(close != null)
+        close();
+    else
+        setOpen(false);
   };
 
   useEffect(() => {
-    if (auth.user){ 
+    if (auth.user) {
       handleClose();
     }
-    if( auth.user?.role!=="ADMIN" && (location.pathname==="/login" || location.pathname==="/register")){
-      navigate(-1)
+    if (
+      auth.user?.role !== "ADMIN" &&
+      (location.pathname === "/login" || location.pathname === "/register")
+    ) {
+      navigate(-1);
     }
   }, [auth.user]);
 
@@ -71,10 +77,10 @@ export default function Navigation() {
     handleCloseUserMenu();
     dispatch(logout());
   };
-  const handleMyOrderClick=()=>{
-    handleCloseUserMenu()
-    navigate("/account/order")
-  }
+  const handleMyOrderClick = () => {
+    handleCloseUserMenu();
+    navigate("/account/order");
+  };
 
   return (
     <div className="bg-white pb-10">
@@ -187,8 +193,18 @@ export default function Navigation() {
                             >
                               {section.items.map((item) => (
                                 <li key={item.name} className="flow-root">
-                                  <p className="-m-2 block p-2 text-gray-500">
-                                    {"item.name"}
+                                  <p
+                                    className="-m-2 block p-2 text-gray-500"
+                                    onClick={() =>
+                                      handleCategoryClick(
+                                        category,
+                                        section,
+                                        item,
+                                        null
+                                      )
+                                    }
+                                  >
+                                    {item.name}
                                   </p>
                                 </li>
                               ))}
@@ -216,7 +232,7 @@ export default function Navigation() {
                 <div className="space-y-6 border-t border-gray-200 px-4 py-6">
                   <div className="flow-root">
                     <a
-                      href="/"
+                      onClick={handleOpen}
                       className="-m-2 block p-2 font-medium text-gray-900"
                     >
                       Sign in
@@ -244,8 +260,6 @@ export default function Navigation() {
       </Transition.Root>
 
       <header className="relative bg-white">
-       
-
         <nav aria-label="Top" className="mx-auto">
           <div className="border-b border-gray-200">
             <div className="flex h-16 items-center px-11">
@@ -261,12 +275,8 @@ export default function Navigation() {
               {/* Logo */}
               <div className="ml-4 flex lg:ml-0">
                 <Link to="/">
-                  <span className="sr-only">Your Company</span>
-                  <img
-                    src="https://res.cloudinary.com/ddkso1wxi/image/upload/v1675919455/Logo/Copy_of_Zosh_Academy_nblljp.png"
-                    alt="Shopwithzosh"
-                    className="h-8 w-8 mr-2"
-                  />
+                  <span className="sr-only">ShopEasy</span>
+                  <img src={icon} alt="Shopwithzosh" className="h-8 w-8 mr-2" />
                 </Link>
               </div>
 
@@ -442,7 +452,7 @@ export default function Navigation() {
                         <MenuItem onClick={handleCloseUserMenu}>
                           Profile
                         </MenuItem>
-                        
+
                         <MenuItem onClick={handleMyOrderClick}>
                           My Orders
                         </MenuItem>
