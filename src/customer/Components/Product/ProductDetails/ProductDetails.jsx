@@ -339,8 +339,8 @@ export default function ProductDetails() {
           </h1>
 
           <div className="border p-5">
-            <Grid container spacing={7}>
-              <Grid item xs={7}>
+            <Grid container spacing={5}>
+              <Grid item >
                 <div className="space-y-5">
                   { review.reviews?.map((item, i) => (
                     <ProductReviewCard item={item} />
@@ -348,7 +348,7 @@ export default function ProductDetails() {
                 </div>
               </Grid>
 
-              <Grid item xs={5}>
+              <Grid item xs={11}>
                 <h1 className="text-xl font-semibold pb-1">Product Ratings</h1>
                 <div className="flex items-center space-x-3 pb-10">
                   <Rating
