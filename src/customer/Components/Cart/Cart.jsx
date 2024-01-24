@@ -18,6 +18,11 @@ const Cart = () => {
   }, [jwt]);
   return (
     <div className="">
+      {cart.cart === null && (
+        <div className="flex justify-center items-center">
+          <h1>Please Login First</h1>
+        </div>
+      )}
       {cart.cartItems.length === 0 && (
         <div className="flex justify-center items-center">
           <h1>Your Shopping Bag is Empty</h1>
