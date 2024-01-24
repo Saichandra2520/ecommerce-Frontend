@@ -16,6 +16,7 @@ const HomeProductSection = ({ section, data }) => {
     0: {
       items: 2,
       itemsFit: "contain",
+      
     },
     568: {
       items: 3,
@@ -51,6 +52,7 @@ const HomeProductSection = ({ section, data }) => {
           onSlideChanged={syncActiveIndex}
           animationType="fadeout"
           animationDuration={2000}
+          autoWidth
         />
         {activeIndex !== items.length - 5 && (
           <Button
