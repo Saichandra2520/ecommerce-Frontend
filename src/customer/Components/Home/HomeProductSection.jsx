@@ -52,7 +52,8 @@ const HomeProductSection = ({ section, data }) => {
           onSlideChanged={syncActiveIndex}
           animationType="fadeout"
           animationDuration={2000}
-          autoWidth
+         
+          
         />
         {activeIndex !== items.length - 5 && (
           <Button
