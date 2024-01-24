@@ -1,6 +1,6 @@
 
 import axios from 'axios';
-const DEPLOYED='https://shopeasy-api-kcgk.onrender.com/'
+const DEPLOYED='https://shopeasy-api-kcgk.onrender.com'
 const LOCALHOST='http://localhost:5454'
 
 export const API_BASE_URL = DEPLOYED;
