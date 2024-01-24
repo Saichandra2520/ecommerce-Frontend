@@ -34,12 +34,12 @@ const Achivement = () => {
        <Card sx={{ position: 'relative' }}>
       <CardContent>
       <Typography variant='h6' sx={{ letterSpacing: '0.25px' }}>
-          Shop With Zosh
+          ShopEasy
         </Typography>
         <Typography variant='body2' >Congratulations 🥳</Typography>
         
         <Typography variant='h5' sx={{ my: 3.1, color: 'primary.main' }}>
-          420.8k
+          520.8k
         </Typography>
         <Button size='small' variant='contained'>
           View Sales

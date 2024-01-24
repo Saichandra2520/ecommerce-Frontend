@@ -93,7 +93,7 @@ export default function AdminPannel() {
 
       <List sx={{ position: "absolute", bottom: 0, width: "100%" }}>
         <Divider />
-       
+      
         <ListItem onClick={handleLogout}  disablePadding >
             <ListItemButton>
             <Avatar

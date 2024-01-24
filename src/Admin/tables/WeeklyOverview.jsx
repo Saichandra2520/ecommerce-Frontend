@@ -99,9 +99,9 @@ const WeeklyOverview = () => {
         <ReactApexCharts  type='bar' height={201} options={options} series={[{ data: [37, 57, 45, 75, 57, 40, 65] }]} />
         <Box sx={{ mb: 5, display: 'flex', alignItems: 'center' }}>
           <Typography variant='h5' sx={{ mr: 4 }}>
-            45%
+            65%
           </Typography>
-          <Typography variant='body2'>Your sales performance is 45% 😎 better compared to last month</Typography>
+          <Typography variant='body2'>Your sales performance is 65% 😎 better compared to last month</Typography>
         </Box>
         <Button fullWidth variant='contained'>
           Details
