@@ -10,10 +10,14 @@ import AdminPannel from './Admin/AdminPannel';
 function App() {
   const isAdmin=true;
   return (
-    <div className="">
+    <div className="app">
       
       <Routes>
+
+        {/* Navigation to the customer page */}
         <Route path="/*" element={<CustomerRoutes />} />
+
+        {/* Navigation to the admin page */}
         <Route path="/admin/*" element={<AdminPannel />} />
         
       </Routes>

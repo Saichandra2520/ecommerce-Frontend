@@ -9,9 +9,8 @@ import About from "../Pages/About";
 import Homepage from "../Pages/Homepage";
 import Navigation from "../customer/Components/Navbar/Navigation";
 import Cart from "../customer/Components/Cart/Cart";
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {Button} from "@mui/material";
-import { customTheme, customerTheme } from "../Admin/them/customeThem";
+import {  ThemeProvider } from '@mui/material/styles';
+import { customerTheme } from "../Admin/them/customeThem";
 import Order from "../customer/Components/orders/Order";
 import OrderDetails from "../customer/Components/orders/OrderDetails";
 import Checkout from "../customer/Components/Checkout/Checkout";
@@ -25,7 +24,7 @@ const CustomerRoutes = () => {
   
     // Only show Navigation component when not on the NotFound page
     const showNavigation = location.pathname !== "*";
-
+    
     // const path=["/","/home","/about","/privacy-policy","/terms-condition","/contact","/men",`/product/${productId}`]
   return (
     <div>
@@ -33,9 +32,8 @@ const CustomerRoutes = () => {
     <ThemeProvider theme={customerTheme}>
     {showNavigation && <Navigation />}
      <Routes>
-     <Route path="/login" element={<Homepage />}></Route>
-     <Route path="/register" element={<Homepage />}></Route>
-
+        <Route path="/login" element={<Homepage />}></Route>
+        <Route path="/register" element={<Homepage />}></Route>
         <Route path="/" element={<Homepage />}></Route>
         <Route path="/home" element={<Homepage />}></Route>
         <Route path="/about" element={<About />}></Route>

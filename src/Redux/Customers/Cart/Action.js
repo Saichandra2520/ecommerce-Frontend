@@ -6,21 +6,20 @@ import {
     ADD_ITEM_TO_CART_REQUEST,
     ADD_ITEM_TO_CART_SUCCESS,
     ADD_ITEM_TO_CART_FAILURE,
-  GET_CART_FAILURE,
-  GET_CART_REQUEST,
-  GET_CART_SUCCESS,
-  REMOVE_CART_ITEM_FAILURE,
-  REMOVE_CART_ITEM_REQUEST,
-  REMOVE_CART_ITEM_SUCCESS,
-  UPDATE_CART_ITEM_FAILURE,
-  UPDATE_CART_ITEM_REQUEST,
-  UPDATE_CART_ITEM_SUCCESS,
+    GET_CART_FAILURE,
+    GET_CART_REQUEST,
+    GET_CART_SUCCESS,
+    REMOVE_CART_ITEM_FAILURE,
+    REMOVE_CART_ITEM_REQUEST,
+    REMOVE_CART_ITEM_SUCCESS,
+    UPDATE_CART_ITEM_FAILURE,
+    UPDATE_CART_ITEM_REQUEST,
+    UPDATE_CART_ITEM_SUCCESS,
 } from "./ActionType";
 
 export const addItemToCart = (reqData) => async (dispatch) => {
-    console.log("req data ",reqData)
-  try {
-   
+
+  try { 
     dispatch({ type: ADD_ITEM_TO_CART_REQUEST });
     const config = {
       headers: {
@@ -28,11 +27,12 @@ export const addItemToCart = (reqData) => async (dispatch) => {
         "Content-Type": "application/json",
       },
     };
+
     const { data } = await axios.put(`${API_BASE_URL}/api/cart/add`, 
       reqData.data,
       config,
     );
-console.log("add item to cart ",data)
+
     dispatch({
       type: ADD_ITEM_TO_CART_SUCCESS,
       payload: data,
@@ -47,6 +47,7 @@ console.log("add item to cart ",data)
     });
   }
 };
+
 export const getCart = (jwt) => async (dispatch) => {
   try {
     dispatch({ type: GET_CART_REQUEST });
@@ -57,7 +58,6 @@ export const getCart = (jwt) => async (dispatch) => {
         },
       };
     const { data } = await axios.get(`${API_BASE_URL}/api/cart/`,config);
-console.log("cart ",data)
     dispatch({
       type: GET_CART_SUCCESS,
       payload: data,
@@ -99,7 +99,7 @@ export const removeCartItem = (reqData) => async (dispatch) => {
     }
   };
   
-  export const updateCartItem = (reqData) => async (dispatch) => {
+export const updateCartItem = (reqData) => async (dispatch) => {
     try {
       dispatch({ type: UPDATE_CART_ITEM_REQUEST });
       const config = {
