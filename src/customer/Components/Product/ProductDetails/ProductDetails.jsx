@@ -73,16 +73,17 @@ export default function ProductDetails() {
   const { customersProduct,review } = useSelector((store) => store);
   const { productId } = useParams();
   const jwt = localStorage.getItem("jwt");
-  // console.log("param",productId,customersProduct.product)
+  
 
   const handleSetActiveImage = (image) => {
     setActiveImage(image);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     const data = { productId, size: selectedSize.name };
     dispatch(addItemToCart({ data, jwt }));
-    navigate("/cart");
+    
   };
 
   useEffect(() => {

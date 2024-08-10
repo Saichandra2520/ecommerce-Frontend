@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import CartItem from "./CartItem";
 import { Badge, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -11,10 +11,9 @@ const Cart = () => {
   const navigate = useNavigate();
   const jwt = localStorage.getItem("jwt");
   const { cart } = useSelector((store) => store);
- 
   useEffect(() => {
     dispatch(getCart(jwt));
-  }, [jwt]);
+  }, [jwt, cart.cartItems]);
   return (
     <div className="">
       {cart.cart === null && (
@@ -22,16 +21,16 @@ const Cart = () => {
           <h1>Please Login First</h1>
         </div>
       )}
-      {cart.cartItems.length === 0 && (
+      {cart?.cartItems.length === 0 && (
         <div className="flex justify-center items-center">
           <h1>Your Shopping Bag is Empty</h1>
         </div>
       )}
-      {cart.cartItems.length > 0 && (
+      {cart?.cartItems.length > 0 && (
         <div className="lg:grid grid-cols-3 lg:px-16 relative">
           <div className="lg:col-span-2 lg:px-5 bg-white">
             <div className=" space-y-3">
-              {cart.cartItems.map((item) => (
+              {cart?.cartItems?.map((item) => (
                 <>
                   <CartItem item={item} showButton={true} />
                 </>
@@ -46,7 +45,7 @@ const Cart = () => {
               <div className="space-y-3 font-semibold">
                 <div className="flex justify-between pt-3 text-black ">
                   <span>Price ({cart.cart?.totalItem} item)</span>
-                  <span>₹{cart.cart.totalPrice}</span>
+                  <span>₹{cart.cart?.totalPrice}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Discount</span>

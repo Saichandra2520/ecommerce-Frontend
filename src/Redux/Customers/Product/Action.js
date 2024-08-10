@@ -1,5 +1,3 @@
-import axios from "axios";
-
 import {
   FIND_PRODUCTS_BY_CATEGORY_REQUEST,
   FIND_PRODUCTS_BY_CATEGORY_SUCCESS,
@@ -35,7 +33,7 @@ export const findProducts = (reqData) => async (dispatch) => {
 
   try {
     dispatch({ type: FIND_PRODUCTS_BY_CATEGORY_REQUEST });
-
+    
     const { data } = await api.get(
       `/api/products?color=${colors}&size=${sizes}&minPrice=${minPrice}&maxPrice=${maxPrice}&minDiscount=${minDiscount}&category=${category}&stock=${stock}&sort=${sort}&pageNumber=${pageNumber}&pageSize=${pageSize}`
     );
@@ -79,7 +77,9 @@ export const findProductById = (reqData) => async (dispatch) => {
 };
 
 export const createProduct = (product) => async (dispatch) => {
+  console.log("Hello Iam here");
   try {
+    
     dispatch({ type: CREATE_PRODUCT_REQUEST });
 
     const { data } = await api.post(

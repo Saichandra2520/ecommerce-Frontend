@@ -71,30 +71,31 @@ const jwt=localStorage.getItem("jwt")
     }));
   };
 
-  // const handleRemoveSize = (index) => {
-  //   const sizes = [...productData.size];
-  //   sizes.splice(index, 1);
-  //   setProductData((prevState) => ({
-  //     ...prevState,
-  //     size: sizes,
-  //   }));
-  // };
+  const handleRemoveSize = (index) => {
+    const sizes = [...productData.size];
+    sizes.splice(index, 1);
+    setProductData((prevState) => ({
+      ...prevState,
+      size: sizes,
+    }));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createProduct({data:productData,jwt}))
-    alert('Product created successfully!')
+    console.log(productData);
+    alert('Product created eppudu ra successfully!')
   };
 
-  // const handleAddProducts=(data)=>{
-  //   for(let item of data){
-  //     const productsData={
-  //       data:item,
-  //       jwt,
-  //     }
-  //     dispatch(createProduct(productsData))
-  //   }
-  // }
+  const handleAddProducts=(data)=>{
+    for(let item of data){
+      const productsData={
+        data:item,
+        jwt,
+      }
+      dispatch(createProduct(productsData))
+    }
+  }
 
   return (
     <Fragment className="createProductContainer ">

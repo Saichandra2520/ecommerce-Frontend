@@ -14,6 +14,7 @@ export default function LoginUserForm({ handleNext }) {
   const { auth } = useSelector((store) => store);
   const handleCloseSnakbar=()=>setOpenSnackBar(false);
   useEffect(()=>{
+    
     if(jwt){
       dispatch(getUser(jwt))
     }
@@ -36,7 +37,7 @@ export default function LoginUserForm({ handleNext }) {
     console.log("login user",userData);
   
     dispatch(login(userData));
-
+    
   };
 
   return (

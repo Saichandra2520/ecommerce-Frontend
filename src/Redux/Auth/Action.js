@@ -36,14 +36,15 @@ const loginRequest = () => ({ type: LOGIN_REQUEST });
 const loginSuccess = user => ({ type: LOGIN_SUCCESS, payload: user });
 const loginFailure = error => ({ type: LOGIN_FAILURE, payload: error });
 
-export const login = userData => async dispatch => {
+export const login = userData => async (dispatch) => {
   dispatch(loginRequest());
   try {
     const response = await axios.post(`${API_BASE_URL}/auth/signin`, userData);
     const user = response.data;
     if(user.jwt) localStorage.setItem("jwt",user.jwt)
-    console.log("login ",user)
+    
     dispatch(loginSuccess(user));
+    console.log("login Myself",user)
   } catch (error) {
     dispatch(loginFailure(error.message));
   }
@@ -55,16 +56,19 @@ export const login = userData => async dispatch => {
 export const getUser = (token) => {
   return async (dispatch) => {
     dispatch({ type: GET_USER_REQUEST });
+    
     try {
       const response = await axios.get(`${API_BASE_URL}/api/users/profile`,{
         headers:{
           "Authorization":`Bearer ${token}`
         }
       });
+      
       const user = response.data;
       dispatch({ type: GET_USER_SUCCESS, payload: user });
-      console.log("req User ",user)
+      
     } catch (error) {
+      console.log("Hello Iam the error")
       const errorMessage = error.message;
       dispatch({ type: GET_USER_FAILURE, payload: errorMessage });
     }
